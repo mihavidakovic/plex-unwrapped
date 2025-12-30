@@ -1,0 +1,105 @@
+{
+  "wrapped": {
+    "loading": "Cargando tu año...",
+    "error": {
+      "notFound": "404",
+      "invalidLink": "Este enlace no es válido o ha expirado",
+      "tryAgain": "Intentar de Nuevo"
+    },
+    "welcome": {
+      "yourYear": "Tu {year}",
+      "wrapped": "Resumido",
+      "subtitle": "Tu año de entretenimiento. Desliza para descubrir tu historia."
+    },
+    "totalWatchTime": {
+      "youSpent": "Dedicaste",
+      "hoursWatching": "Horas Viendo Contenido",
+      "daysOfEntertainment": "¡Son {days} días de pura diversión!"
+    },
+    "numbers": {
+      "title": "Tu Año en Números",
+      "movies": "Películas",
+      "totalPlays": "{count} reproducciones",
+      "tvShows": "Series",
+      "episodesWatched": "{count} episodios vistos",
+      "daysActive": "Días Activo"
+    },
+    "topShows": {
+      "title": "Tus Series Favoritas",
+      "episodes": "{count} episodios",
+      "duration": "{duration}",
+      "plays": "veces",
+      "watchedEpisodes": "¡Viste {count} episodios de {title}!"
+    },
+    "topMovies": {
+      "title": "Tus Películas Favoritas",
+      "playsCount": "{count} veces"
+    },
+    "monthlyJourney": {
+      "title": "Tu Viaje del Año",
+      "peakMonth": "{month} fue tu mejor mes"
+    },
+    "devices": {
+      "title": "Dónde Viste Todo",
+      "platform": "{platform}",
+      "hours": "{hours}",
+      "plays": "veces"
+    },
+    "memorableDay": {
+      "title": "Tu día más memorable",
+      "subtitle": "Tu maratón más épica"
+    },
+    "fullCircle": {
+      "title": "De Principio a Fin",
+      "firstWatch": "TU PRIMERA VEZ",
+      "lastWatch": "TU ÚLTIMA VEZ",
+      "comfortRewatches": "REPETICIONES FAVORITAS",
+      "classicsHitDifferent": "Los clásicos siempre caen bien"
+    },
+    "peakPerformance": {
+      "title": "En tu Mejor Momento",
+      "longestStreak": "RACHA MÁS LARGA",
+      "longestStreakDays": "{days} Días",
+      "couldntStop": "No podías parar",
+      "longestBinge": "MARATÓN ÉPICO",
+      "bingingShow": "Maratón de {show}",
+      "favoriteTime": "MOMENTO FAVORITO",
+      "peakWatchingHour": "Tu hora preferida"
+    },
+    "funFacts": {
+      "title": "¿Sabías Que...?",
+      "dayOfWeek": "Los {day}s son tu día favorito",
+      "crushedEpisodes": "Devoraste {count} episodios de {title}",
+      "originalQuality": "{percentage}% en calidad original",
+      "preference": "Sin duda eres más de {type}",
+      "watchedPercentage": "Viste algo el {percentage}% de los días del año",
+      "favoriteDevice": "{device} fue tu pantalla favorita"
+    },
+    "thankYou": {
+      "title": "Gracias por Estar Aquí",
+      "subtitle": "Por otro año increíble de entretenimiento",
+      "watchMore": "Ver Más en Plex",
+      "scrollToTop": "Volver al Inicio",
+      "generated": "{year} Resumido • Generado el {date}"
+    },
+    "time": {
+      "hour": {
+        "am": "{hour} AM",
+        "pm": "{hour} PM"
+      },
+      "duration": {
+        "days": "{days}d",
+        "daysHours": "{days}d {hours}h",
+        "hours": "{hours}h"
+      }
+    },
+    "contentTypes": {
+      "movies": "películas",
+      "tvShows": "series"
+    }
+  },
+  "language": {
+    "select": "Cambiar Idioma",
+    "current": "Idioma Actual"
+  }
+}

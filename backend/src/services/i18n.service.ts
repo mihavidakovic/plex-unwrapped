@@ -24,8 +24,8 @@ class I18nService {
       try {
         const filePath = path.join(__dirname, '../locales', `${locale}.json`);
 
-        // Only load English for now, others will be added later
-        if (locale === 'en' && fs.existsSync(filePath)) {
+        // Load all available translation files
+        if (fs.existsSync(filePath)) {
           const content = fs.readFileSync(filePath, 'utf-8');
           this.translations.set(locale, JSON.parse(content));
         }

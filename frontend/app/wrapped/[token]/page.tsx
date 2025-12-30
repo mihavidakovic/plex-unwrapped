@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { motion, useInView } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { api } from '@/lib/api';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
@@ -133,6 +133,7 @@ export default function WrappedPage() {
   const params = useParams();
   const token = params.token as string;
   const t = useTranslations('wrapped');
+  const locale = useLocale();
   const [data, setData] = useState<WrappedData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -160,6 +161,13 @@ export default function WrappedPage() {
     if (!thumb) return '';
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
     return `${apiUrl}/api/wrapped/plex-image?path=${encodeURIComponent(thumb)}`;
+  };
+
+  const getLocalizedMonthName = (monthYearString: string) => {
+    // monthYearString is like "2025-07", extract the month part
+    const monthNumber = monthYearString.split('-')[1] || '1'; // Gets "07", fallback to "1"
+    const date = new Date(2024, parseInt(monthNumber) - 1, 1);
+    return date.toLocaleDateString(locale, { month: 'long' });
   };
 
   useEffect(() => {
@@ -668,7 +676,11 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                {t('monthlyJourney.peakMonth', { month: stats.mostActiveMonth })}
+                {(() => {
+                  const topMonth = stats.monthlyStats.find(m => m.monthName === stats.mostActiveMonth);
+                  const localizedMonth = topMonth ? getLocalizedMonthName(topMonth.month) : stats.mostActiveMonth;
+                  return t('monthlyJourney.peakMonth', { month: localizedMonth });
+                })()}
               </motion.p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -692,7 +704,7 @@ export default function WrappedPage() {
                         <div className={`font-['Bebas_Neue'] text-sm mb-2 ${
                           isTopMonth ? 'text-[#ff6b35]' : 'text-[#888]'
                         }`}>
-                          {month.monthName}
+                          {getLocalizedMonthName(month.month)}
                         </div>
                         <div className="font-['Bebas_Neue'] text-3xl text-[#e8e8e8] mb-1">
                           {month.plays}
@@ -799,7 +811,7 @@ export default function WrappedPage() {
                 transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
               >
                 <div className="font-['Bebas_Neue'] text-5xl md:text-7xl text-[#ff6b35]">
-                  {new Date(stats.mostMemorableDayDate).toLocaleDateString('en-US', {
+                  {new Date(stats.mostMemorableDayDate).toLocaleDateString(locale, {
                     month: 'long',
                     day: 'numeric'
                   })}
@@ -863,7 +875,7 @@ export default function WrappedPage() {
                     <div className="font-['DM_Sans'] text-base text-[#888] mb-3">{t('fullCircle.firstWatch')}</div>
                     <div className="font-['Bebas_Neue'] text-4xl text-[#ff6b35] mb-2">{stats.firstWatchTitle}</div>
                     <div className="font-['DM_Sans'] text-base text-[#888]">
-                      {new Date(stats.firstWatchDate).toLocaleDateString('en-US', {
+                      {new Date(stats.firstWatchDate).toLocaleDateString(locale, {
                         month: 'long',
                         day: 'numeric',
                         year: 'numeric'
@@ -883,7 +895,7 @@ export default function WrappedPage() {
                     <div className="font-['DM_Sans'] text-base text-[#888] mb-3">{t('fullCircle.lastWatch')}</div>
                     <div className="font-['Bebas_Neue'] text-4xl text-[#f7931e] mb-2">{stats.lastWatchTitle}</div>
                     <div className="font-['DM_Sans'] text-base text-[#888]">
-                      {new Date(stats.lastWatchDate).toLocaleDateString('en-US', {
+                      {new Date(stats.lastWatchDate).toLocaleDateString(locale, {
                         month: 'long',
                         day: 'numeric',
                         year: 'numeric'
@@ -1023,12 +1035,7 @@ export default function WrappedPage() {
               {(() => {
                 const generatedFacts = [];
 
-                // Add original fun facts
-                if (stats.funFacts) {
-                  generatedFacts.push(...stats.funFacts);
-                }
-
-                // Generate additional facts from data
+                // Generate facts from data with translations
                 if (stats.mostActiveDayOfWeek) {
                   generatedFacts.push(t('funFacts.dayOfWeek', { day: stats.mostActiveDayOfWeek }));
                 }

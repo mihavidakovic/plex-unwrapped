@@ -1,0 +1,105 @@
+{
+  "wrapped": {
+    "loading": "Dein Jahr wird geladen...",
+    "error": {
+      "notFound": "404",
+      "invalidLink": "Dieser Link ist ungültig oder abgelaufen",
+      "tryAgain": "Nochmal Versuchen"
+    },
+    "welcome": {
+      "yourYear": "Dein {year}",
+      "wrapped": "im Rückblick",
+      "subtitle": "Dein Jahr voller Entertainment. Scrolle nach unten und entdecke deine Geschichte."
+    },
+    "totalWatchTime": {
+      "youSpent": "Du hast",
+      "hoursWatching": "Stunden Geschaut",
+      "daysOfEntertainment": "Das sind {days} Tage pure Unterhaltung!"
+    },
+    "numbers": {
+      "title": "Dein Jahr in Zahlen",
+      "movies": "Filme",
+      "totalPlays": "{count} mal abgespielt",
+      "tvShows": "Serien",
+      "episodesWatched": "{count} Episoden geschaut",
+      "daysActive": "Aktive Tage"
+    },
+    "topShows": {
+      "title": "Deine Top-Serien",
+      "episodes": "{count} Episoden",
+      "duration": "{duration}",
+      "plays": "mal",
+      "watchedEpisodes": "Du hast {count} Episoden von {title} geschaut!"
+    },
+    "topMovies": {
+      "title": "Deine Top-Filme",
+      "playsCount": "{count} mal"
+    },
+    "monthlyJourney": {
+      "title": "Deine Jahresreise",
+      "peakMonth": "{month} war dein bester Monat"
+    },
+    "devices": {
+      "title": "Wo Du Geschaut Hast",
+      "platform": "{platform}",
+      "hours": "{hours}",
+      "plays": "mal"
+    },
+    "memorableDay": {
+      "title": "Dein unvergesslicher Tag",
+      "subtitle": "Dein längster Marathon"
+    },
+    "fullCircle": {
+      "title": "Voller Kreis",
+      "firstWatch": "DEIN ERSTER FILM",
+      "lastWatch": "DEIN LETZTER FILM",
+      "comfortRewatches": "DEINE KLASSIKER",
+      "classicsHitDifferent": "Klassiker gehen einfach immer"
+    },
+    "peakPerformance": {
+      "title": "Auf dem Höhepunkt",
+      "longestStreak": "LÄNGSTE SERIE",
+      "longestStreakDays": "{days} Tage",
+      "couldntStop": "Konnte nicht aufhören",
+      "longestBinge": "LÄNGSTER MARATHON",
+      "bingingShow": "{show}-Marathon",
+      "favoriteTime": "LIEBLINGSZEIT",
+      "peakWatchingHour": "Deine beste Zeit"
+    },
+    "funFacts": {
+      "title": "Wusstest Du?",
+      "dayOfWeek": "{day}s sind dein Lieblingstag",
+      "crushedEpisodes": "Du hast {count} Episoden von {title} verschlungen",
+      "originalQuality": "{percentage}% in Originalqualität",
+      "preference": "Du bist definitiv eher Team {type}",
+      "watchedPercentage": "An {percentage}% aller Tage geschaut",
+      "favoriteDevice": "{device} war dein Lieblingsbildschirm"
+    },
+    "thankYou": {
+      "title": "Danke fürs Dabeisein",
+      "subtitle": "Auf ein weiteres großartiges Jahr",
+      "watchMore": "Mehr auf Plex Ansehen",
+      "scrollToTop": "Nach Oben",
+      "generated": "{year} Rückblick • Erstellt am {date}"
+    },
+    "time": {
+      "hour": {
+        "am": "{hour} Uhr",
+        "pm": "{hour} Uhr"
+      },
+      "duration": {
+        "days": "{days}T",
+        "daysHours": "{days}T {hours}Std",
+        "hours": "{hours}Std"
+      }
+    },
+    "contentTypes": {
+      "movies": "Filme",
+      "tvShows": "Serien"
+    }
+  },
+  "language": {
+    "select": "Sprache Wechseln",
+    "current": "Aktuelle Sprache"
+  }
+}

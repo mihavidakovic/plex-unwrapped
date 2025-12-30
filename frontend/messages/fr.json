@@ -1,0 +1,105 @@
+{
+  "wrapped": {
+    "loading": "Chargement de ton année...",
+    "error": {
+      "notFound": "404",
+      "invalidLink": "Ce lien est invalide ou a expiré",
+      "tryAgain": "Réessayer"
+    },
+    "welcome": {
+      "yourYear": "Ton année {year}",
+      "wrapped": "en Résumé",
+      "subtitle": "Ton année en divertissement. Fais défiler pour découvrir ton histoire."
+    },
+    "totalWatchTime": {
+      "youSpent": "Tu as passé",
+      "hoursWatching": "Heures de Visionnage",
+      "daysOfEntertainment": "Soit {days} jours de pur plaisir !"
+    },
+    "numbers": {
+      "title": "Ton Année en Chiffres",
+      "movies": "Films",
+      "totalPlays": "{count} lectures",
+      "tvShows": "Séries",
+      "episodesWatched": "{count} épisodes regardés",
+      "daysActive": "Jours Actifs"
+    },
+    "topShows": {
+      "title": "Tes Séries Préférées",
+      "episodes": "{count} épisodes",
+      "duration": "{duration}",
+      "plays": "fois",
+      "watchedEpisodes": "Tu as regardé {count} épisodes de {title} !"
+    },
+    "topMovies": {
+      "title": "Tes Films Préférés",
+      "playsCount": "{count} fois"
+    },
+    "monthlyJourney": {
+      "title": "Ton Voyage de l'Année",
+      "peakMonth": "{month} a été ton meilleur mois"
+    },
+    "devices": {
+      "title": "Tes Écrans Favoris",
+      "platform": "{platform}",
+      "hours": "{hours}",
+      "plays": "fois"
+    },
+    "memorableDay": {
+      "title": "Ton jour mémorable",
+      "subtitle": "Ton plus long marathon"
+    },
+    "fullCircle": {
+      "title": "La Boucle Est Bouclée",
+      "firstWatch": "TON PREMIER VISIONNAGE",
+      "lastWatch": "TON DERNIER VISIONNAGE",
+      "comfortRewatches": "TES CLASSIQUES",
+      "classicsHitDifferent": "Les classiques, c'est toujours bon"
+    },
+    "peakPerformance": {
+      "title": "Ton Meilleur",
+      "longestStreak": "SÉRIE LA PLUS LONGUE",
+      "longestStreakDays": "{days} Jours",
+      "couldntStop": "Impossible de s'arrêter",
+      "longestBinge": "PLUS LONG MARATHON",
+      "bingingShow": "Marathon de {show}",
+      "favoriteTime": "HEURE PRÉFÉRÉE",
+      "peakWatchingHour": "Ton créneau favori"
+    },
+    "funFacts": {
+      "title": "Le Savais-Tu ?",
+      "dayOfWeek": "Le {day}, c'est ton jour",
+      "crushedEpisodes": "Tu as dévoré {count} épisodes de {title}",
+      "originalQuality": "{percentage}% en qualité originale",
+      "preference": "Tu es clairement plutôt {type}",
+      "watchedPercentage": "Tu as regardé {percentage}% des jours cette année",
+      "favoriteDevice": "{device} était ton écran préféré"
+    },
+    "thankYou": {
+      "title": "Merci d'Être Là",
+      "subtitle": "Pour une autre année incroyable de divertissement",
+      "watchMore": "Voir Plus sur Plex",
+      "scrollToTop": "Retour en Haut",
+      "generated": "Résumé {year} • Généré le {date}"
+    },
+    "time": {
+      "hour": {
+        "am": "{hour}h",
+        "pm": "{hour}h"
+      },
+      "duration": {
+        "days": "{days}j",
+        "daysHours": "{days}j {hours}h",
+        "hours": "{hours}h"
+      }
+    },
+    "contentTypes": {
+      "movies": "films",
+      "tvShows": "séries"
+    }
+  },
+  "language": {
+    "select": "Changer de Langue",
+    "current": "Langue Actuelle"
+  }
+}

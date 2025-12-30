@@ -1,0 +1,31 @@
+{
+  "email": {
+    "subject": "Tvoj Unwrapped for Plex {year} je pripravljen! 🎬",
+    "title": "🎬 Tvoj Unwrapped for Plex {year}",
+    "greeting": "Živjo {name}!",
+    "intro": "Tvoj osebni letni pregled je pripravljen!",
+    "quickPeek": {
+      "title": "Hiter Pogled 👀",
+      "hoursWatched": "{hours} ur gledanja",
+      "totalPlays": "{plays} predvajanj skupaj",
+      "daysActive": "{days} aktivnih dni"
+    },
+    "description": "Klikni spodaj in poglej svoje popolne statistike, najljubšo vsebino, navade gledanja in zabavne dosežke!",
+    "button": "Poglej Moj Wrapped {year}",
+    "linkExpiry": "Ta povezava je samo za tebe in poteče čez 90 dni.",
+    "footer": {
+      "generated": "🤖 Ustvarjeno z Unwrapped for Plex",
+      "ignore": "Če tega nisi zahteval, lahko to sporočilo mirno prezreš."
+    },
+    "plainText": {
+      "title": "Tvoj Unwrapped for Plex {year}",
+      "quickPeek": "Hiter Pogled:",
+      "hoursWatched": "- {hours} ur gledanja",
+      "totalPlays": "- {plays} predvajanj skupaj",
+      "daysActive": "- {days} aktivnih dni",
+      "viewHere": "Poglej svoje popolne statistike tukaj:",
+      "separator": "---",
+      "generated": "Ustvarjeno z Unwrapped for Plex"
+    }
+  }
+}

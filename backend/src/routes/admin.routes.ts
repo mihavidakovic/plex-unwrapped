@@ -197,6 +197,37 @@ router.get('/users/:id', asyncHandler(async (req, res) => {
 }));
 
 /**
+ * PATCH /api/admin/users/:id/language
+ * Update user's preferred language
+ */
+router.patch('/users/:id/language', asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const { preferred_language } = req.body;
+
+  // Validate language code
+  const validLanguages = ['en', 'es', 'fr', 'de', 'sl'];
+  if (!preferred_language || !validLanguages.includes(preferred_language)) {
+    throw createError('Invalid language code. Must be one of: en, es, fr, de, sl', 400);
+  }
+
+  // Check if user exists
+  const user = await UserModel.findById(userId);
+  if (!user) {
+    throw createError('User not found', 404);
+  }
+
+  // Update user's language preference
+  const updatedUser = await UserModel.update(userId, { preferred_language });
+
+  logger.info(`Updated language for user ${userId} to ${preferred_language}`);
+
+  res.json({
+    success: true,
+    user: updatedUser,
+  });
+}));
+
+/**
  * POST /api/admin/users/:id/send-email
  * Send wrapped email to a specific user
  */
@@ -230,16 +261,23 @@ router.post('/users/:id/send-email', asyncHandler(async (req, res) => {
     tokenRecord = result.record;
   }
 
-  // Construct wrapped URL
+  // Get user's preferred language (defaults to 'en' if not set)
+  const locale = user.preferred_language || 'en';
+
+  // Construct wrapped URL with language parameter
   const appUrl = process.env.APP_URL || 'http://localhost:3000';
-  const wrappedUrl = `${appUrl}/wrapped/${tokenRecord.token}`;
+  const wrappedUrl = `${appUrl}/wrapped/${tokenRecord.token}?lang=${locale}`;
+
+  // Generate subject with i18n
+  const { i18n } = require('../services/i18n.service');
+  const emailSubject = i18n.t('email.subject', locale, { year: targetYear });
 
   // Create email log
   const emailLog = await EmailLogModel.create({
     user_id: user.id,
     generation_id: null,
     email_to: user.email,
-    email_subject: `Your Unwrapped for Plex ${targetYear} is Ready!`,
+    email_subject: emailSubject,
   });
 
   try {
@@ -258,9 +296,9 @@ router.post('/users/:id/send-email', asyncHandler(async (req, res) => {
     const info = await transporter.sendMail({
       from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to: user.email,
-      subject: `Your Unwrapped for Plex ${targetYear} is Ready!`,
-      html: generateEmailHTML(user, stats, wrappedUrl),
-      text: generateEmailText(user, stats, wrappedUrl),
+      subject: emailSubject,
+      html: generateEmailHTML(user, stats, wrappedUrl, locale),
+      text: generateEmailText(user, stats, wrappedUrl, locale),
     });
 
     // Mark as sent
@@ -300,6 +338,9 @@ router.get('/preview/:userId/:year', asyncHandler(async (req, res) => {
 
   const token = await AccessTokenModel.findByWrappedStatsId(stats.id);
 
+  // Get user's preferred language for preview URL
+  const locale = user.preferred_language || 'en';
+
   res.json({
     user: {
       id: user.id,
@@ -309,7 +350,7 @@ router.get('/preview/:userId/:year', asyncHandler(async (req, res) => {
     },
     stats,
     token: token?.token || null,
-    previewUrl: token ? `${process.env.APP_URL}/wrapped/${token.token}` : null,
+    previewUrl: token ? `${process.env.APP_URL}/wrapped/${token.token}?lang=${locale}` : null,
   });
 }));
 
