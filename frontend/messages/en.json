@@ -1,0 +1,105 @@
+{
+  "wrapped": {
+    "loading": "Loading your year...",
+    "error": {
+      "notFound": "404",
+      "invalidLink": "This link is invalid or has expired",
+      "tryAgain": "Try Again"
+    },
+    "welcome": {
+      "yourYear": "Your {year}",
+      "wrapped": "Wrapped",
+      "subtitle": "Your year in entertainment. Scroll to reveal your story."
+    },
+    "totalWatchTime": {
+      "youSpent": "You spent",
+      "hoursWatching": "Hours Watching",
+      "daysOfEntertainment": "That's {days} days of pure entertainment"
+    },
+    "numbers": {
+      "title": "Your Year in Numbers",
+      "movies": "Movies",
+      "totalPlays": "{count} total plays",
+      "tvShows": "TV Shows",
+      "episodesWatched": "{count} episodes watched",
+      "daysActive": "Days Active"
+    },
+    "topShows": {
+      "title": "Your Top TV Shows",
+      "episodes": "{count} episodes",
+      "duration": "{duration}",
+      "plays": "plays",
+      "watchedEpisodes": "You watched {count} episodes of {title}!"
+    },
+    "topMovies": {
+      "title": "Your Top Movies",
+      "playsCount": "{count} plays"
+    },
+    "monthlyJourney": {
+      "title": "Your Year's Journey",
+      "peakMonth": "{month} was your peak month"
+    },
+    "devices": {
+      "title": "Where You Watched",
+      "platform": "{platform}",
+      "hours": "{hours}",
+      "plays": "plays"
+    },
+    "memorableDay": {
+      "title": "Your most memorable day",
+      "subtitle": "Your longest single-day marathon"
+    },
+    "fullCircle": {
+      "title": "Full Circle",
+      "firstWatch": "YOUR FIRST WATCH",
+      "lastWatch": "YOUR LATEST WATCH",
+      "comfortRewatches": "COMFORT REWATCHES",
+      "classicsHitDifferent": "Sometimes the classics just hit different"
+    },
+    "peakPerformance": {
+      "title": "Peak Performance",
+      "longestStreak": "LONGEST STREAK",
+      "longestStreakDays": "{days} Days",
+      "couldntStop": "You couldn't stop watching",
+      "longestBinge": "LONGEST BINGE",
+      "bingingShow": "Binging {show}",
+      "favoriteTime": "FAVORITE TIME",
+      "peakWatchingHour": "Your peak watching hour"
+    },
+    "funFacts": {
+      "title": "Did You Know?",
+      "dayOfWeek": "{day}s are your go-to watch day",
+      "crushedEpisodes": "You crushed {count} episodes of {title}",
+      "originalQuality": "{percentage}% of your streams were in original quality",
+      "preference": "You're definitely more of a {type} person",
+      "watchedPercentage": "You watched on {percentage}% of days this year",
+      "favoriteDevice": "{device} was your favorite way to watch"
+    },
+    "thankYou": {
+      "title": "Thanks for Watching",
+      "subtitle": "Here's to another great year of entertainment",
+      "watchMore": "Watch More on Plex",
+      "scrollToTop": "Scroll to Top",
+      "generated": "{year} Wrapped • Generated {date}"
+    },
+    "time": {
+      "hour": {
+        "am": "{hour} AM",
+        "pm": "{hour} PM"
+      },
+      "duration": {
+        "days": "{days}d",
+        "daysHours": "{days}d {hours}h",
+        "hours": "{hours}h"
+      }
+    },
+    "contentTypes": {
+      "movies": "movies",
+      "tvShows": "TV shows"
+    }
+  },
+  "language": {
+    "select": "Select Language",
+    "current": "Current Language"
+  }
+}
