@@ -4,7 +4,7 @@ services:
   # PostgreSQL Database
   db:
     image: postgres:16-alpine
-    container_name: plex-unwrapped-db
+    container_name: unwrapped-for-plex-db
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-plexunwrapped}
       POSTGRES_USER: ${POSTGRES_USER:-plexunwrapped}
@@ -31,7 +31,7 @@ services:
   # Redis Cache
   redis:
     image: redis:7-alpine
-    container_name: plex-unwrapped-redis
+    container_name: unwrapped-for-plex-redis
     command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
     volumes:
       - redis_data:/data
@@ -57,7 +57,7 @@ services:
       dockerfile: Dockerfile
       args:
         NODE_ENV: ${NODE_ENV:-production}
-    container_name: plex-unwrapped-backend
+    container_name: unwrapped-for-plex-backend
     ports:
       - "${BACKEND_PORT:-3221}:3001"
     environment:
@@ -98,7 +98,7 @@ services:
       SMTP_USER: ${SMTP_USER:?Please set SMTP_USER in .env file}
       SMTP_PASSWORD: ${SMTP_PASSWORD:?Please set SMTP_PASSWORD in .env file}
       SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL:?Please set SMTP_FROM_EMAIL in .env file}
-      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Plex Unwrapped}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Unwrapped for Plex}
       EMAIL_RATE_LIMIT: ${EMAIL_RATE_LIMIT:-10}
 
       # Application
@@ -170,7 +170,7 @@ services:
         NEXT_PUBLIC_APP_URL: ${APP_URL:-http://localhost:3000}
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3221}
         NODE_ENV: ${NODE_ENV:-production}
-    container_name: plex-unwrapped-frontend
+    container_name: unwrapped-for-plex-frontend
     ports:
       - "${FRONTEND_PORT:-3222}:3000"
     environment:
@@ -202,7 +202,7 @@ services:
   # Run with: docker-compose -f docker-compose.yml -f docker-compose.nginx.yml up -d
   # nginx:
   #   image: nginx:alpine
-  #   container_name: plex-unwrapped-nginx
+  #   container_name: unwrapped-for-plex-nginx
   #   ports:
   #     - "80:80"
   #     - "443:443"

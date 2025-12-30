@@ -47,7 +47,7 @@ export default function AdminLoginPage() {
             {/* Logo */}
             <div className="text-center space-y-2">
               <h1 className="font-['Archivo'] font-bold text-3xl text-foreground">
-                Plex Unwrapped
+                Unwrapped for Plex
               </h1>
               <p className="text-sm text-muted-foreground">
                 Sign in to access the admin panel

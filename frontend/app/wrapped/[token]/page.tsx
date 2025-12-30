@@ -159,7 +159,7 @@ export default function WrappedPage() {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3222';
 
     // Update page title
-    document.title = `${displayName}'s ${year} Wrapped - Plex Unwrapped`;
+    document.title = `${displayName}'s ${year} Wrapped - Unwrapped for Plex`;
 
     // Create or update meta tags
     const updateMetaTag = (property: string, content: string, isProperty = true) => {
@@ -184,7 +184,7 @@ export default function WrappedPage() {
     updateMetaTag('og:description', description);
     updateMetaTag('og:type', 'website');
     updateMetaTag('og:url', `${appUrl}/wrapped/${token}`);
-    updateMetaTag('og:site_name', 'Plex Unwrapped');
+    updateMetaTag('og:site_name', 'Unwrapped for Plex');
 
     // If user has a top movie with thumbnail, use it as og:image
     if (stats.topMovies[0]?.thumb) {
@@ -210,7 +210,7 @@ export default function WrappedPage() {
     updateMetaTag('msapplication-TileColor', '#ff6b35', false);
 
     // Additional useful tags
-    updateMetaTag('author', 'Plex Unwrapped', false);
+    updateMetaTag('author', 'Unwrapped for Plex', false);
     updateMetaTag('keywords', `plex, wrapped, ${year}, movies, tv shows, streaming, entertainment, ${displayName}`, false);
   }, [data, token]);
 

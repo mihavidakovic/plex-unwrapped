@@ -1,7 +1,7 @@
 {
-  "name": "plex-unwrapped-frontend",
+  "name": "unwrapped-for-plex-frontend",
   "version": "1.0.0",
-  "description": "Frontend for Plex Unwrapped - Year in Review statistics viewer",
+  "description": "Frontend for Unwrapped for Plex - Year in Review statistics viewer",
   "private": true,
   "scripts": {
     "dev": "next dev",

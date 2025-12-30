@@ -101,7 +101,7 @@ export default function AdminDashboardPage() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gradient">Dashboard</h1>
-        <p className="text-gray-400 mt-1">Overview of your Plex Unwrapped system</p>
+        <p className="text-gray-400 mt-1">Overview of your Unwrapped for Plex system</p>
       </div>
 
       {/* Test Mode Warning */}
@@ -229,7 +229,7 @@ export default function AdminDashboardPage() {
       <Card>
         <CardHeader>
           <CardTitle>Quick Actions</CardTitle>
-          <CardDescription>Manage your Plex Unwrapped system</CardDescription>
+          <CardDescription>Manage your Unwrapped for Plex system</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>

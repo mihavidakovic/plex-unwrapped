@@ -55,7 +55,7 @@ app.use('/api/admin', adminRoutes);
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
-    name: 'Plex Unwrapped API',
+    name: 'Unwrapped for Plex API',
     version: '1.0.0',
     status: 'running',
     endpoints: {
@@ -63,7 +63,7 @@ app.get('/', (req, res) => {
       wrapped: '/api/wrapped/:token',
       admin: '/api/admin',
     },
-    docs: 'https://github.com/yourusername/plex-unwrapped',
+    docs: 'https://github.com/yourusername/unwrapped-for-plex',
   });
 });
 
@@ -74,7 +74,7 @@ app.use(errorHandler);
 // Initialize services and start server
 async function startServer() {
   try {
-    logger.info('Starting Plex Unwrapped Backend...');
+    logger.info('Starting Unwrapped for Plex Backend...');
 
     // Test database connection
     logger.info('Connecting to database...');

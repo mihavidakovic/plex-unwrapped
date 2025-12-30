@@ -1,5 +1,5 @@
 -- =============================================================================
--- Plex Unwrapped Database Schema
+-- Unwrapped for Plex Database Schema
 -- PostgreSQL 16+
 -- =============================================================================
 
@@ -363,7 +363,7 @@ CREATE TRIGGER update_system_config_updated_at BEFORE UPDATE ON system_config
 
 -- Insert default system configuration
 INSERT INTO system_config (key, value, value_type, description, is_public, is_editable) VALUES
-    ('app_name', 'Plex Unwrapped', 'string', 'Application name', true, true),
+    ('app_name', 'Unwrapped for Plex', 'string', 'Application name', true, true),
     ('app_version', '1.0.0', 'string', 'Application version', true, false),
     ('target_year', '2025', 'number', 'Target year for wrapped generation', true, true),
     ('enable_public_stats', 'true', 'boolean', 'Allow public viewing of stats', true, true),
@@ -426,7 +426,7 @@ REVOKE ALL ON ALL FUNCTIONS IN SCHEMA public FROM PUBLIC;
 -- Grant necessary permissions to the application user
 -- Note: The application user is created by the POSTGRES_USER env variable
 
-COMMENT ON DATABASE plexunwrapped IS 'Plex Unwrapped - Year in Review Statistics for Plex Users';
+COMMENT ON DATABASE plexunwrapped IS 'Unwrapped for Plex - Year in Review Statistics for Plex Users';
 
 -- =============================================================================
 -- End of Schema

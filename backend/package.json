@@ -1,7 +1,7 @@
 {
-  "name": "plex-unwrapped-backend",
+  "name": "unwrapped-for-plex-backend",
   "version": "1.0.0",
-  "description": "Backend API for Plex Unwrapped - Year in Review statistics for Plex users",
+  "description": "Backend API for Unwrapped for Plex - Year in Review statistics for Plex users",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",

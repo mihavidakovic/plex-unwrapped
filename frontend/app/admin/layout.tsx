@@ -81,7 +81,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <SidebarHeader>
             <Link href="/admin/dashboard" className="flex flex-col px-4 py-3">
               <h1 className="font-['Archivo'] font-bold text-xl text-sidebar-foreground">
-                Plex Unwrapped
+                Unwrapped for Plex
               </h1>
               <p className="text-xs text-muted-foreground mt-0.5">Admin Panel</p>
             </Link>
@@ -128,7 +128,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="h-4 w-px bg-border" />
             <div className="flex items-center gap-2">
               <h2 className="font-['Archivo'] font-semibold text-foreground">
-                Plex Unwrapped Admin
+                Unwrapped for Plex Admin
               </h2>
             </div>
           </header>

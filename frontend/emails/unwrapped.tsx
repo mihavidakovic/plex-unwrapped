@@ -49,12 +49,12 @@ export const UnwrappedEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>{`Your ${year} Plex Unwrapped is here! 🎬`}</Preview>
+      <Preview>{`Your ${year} Unwrapped for Plex is here! 🎬`}</Preview>
       <Body style={main}>
         <Container style={container}>
           {/* Header */}
           <Section style={header}>
-            <Heading style={h1}>Plex Unwrapped {year}</Heading>
+            <Heading style={h1}>Unwrapped for Plex {year}</Heading>
             <Text style={subtitle}>Hey {username}, your year in entertainment is here!</Text>
           </Section>
 
@@ -122,7 +122,7 @@ export const UnwrappedEmail = ({
           {/* Footer */}
           <Section style={footer}>
             <Text style={footerText}>
-              Generated with Plex Unwrapped
+              Generated with Unwrapped for Plex
             </Text>
             <Text style={footerText}>
               <Link href={wrappedUrl} style={footerLink}>

@@ -5,7 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Plex Unwrapped',
+  title: 'Unwrapped for Plex',
   description: 'Your personalized Plex year in review',
   icons: {
     icon: '/favicon.ico',

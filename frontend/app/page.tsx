@@ -5,7 +5,7 @@ export default function HomePage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900">
       <div className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h1 className="text-6xl font-bold mb-6">
-          <span className="text-gradient">Plex Unwrapped</span>
+          <span className="text-gradient">Unwrapped for Plex</span>
         </h1>
         <p className="text-2xl text-gray-300 mb-4">
           Your Year in Review

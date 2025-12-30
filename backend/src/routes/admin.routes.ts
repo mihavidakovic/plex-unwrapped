@@ -239,7 +239,7 @@ router.post('/users/:id/send-email', asyncHandler(async (req, res) => {
     user_id: user.id,
     generation_id: null,
     email_to: user.email,
-    email_subject: `Your Plex Unwrapped ${targetYear} is Ready!`,
+    email_subject: `Your Unwrapped for Plex ${targetYear} is Ready!`,
   });
 
   try {
@@ -258,7 +258,7 @@ router.post('/users/:id/send-email', asyncHandler(async (req, res) => {
     const info = await transporter.sendMail({
       from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to: user.email,
-      subject: `Your Plex Unwrapped ${targetYear} is Ready!`,
+      subject: `Your Unwrapped for Plex ${targetYear} is Ready!`,
       html: generateEmailHTML(user, stats, wrappedUrl),
       text: generateEmailText(user, stats, wrappedUrl),
     });
@@ -543,14 +543,14 @@ async function sendEmails(statsList: any[], generationId: number) {
         user_id: user.id,
         generation_id: generationId,
         email_to: user.email,
-        email_subject: `Your Plex Unwrapped ${stats.year} is Ready!`,
+        email_subject: `Your Unwrapped for Plex ${stats.year} is Ready!`,
       });
 
       // Send email
       const info = await transporter.sendMail({
         from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
         to: user.email,
-        subject: `Your Plex Unwrapped ${stats.year} is Ready!`,
+        subject: `Your Unwrapped for Plex ${stats.year} is Ready!`,
         html: generateEmailHTML(user, stats, wrappedUrl),
         text: generateEmailText(user, stats, wrappedUrl),
       });
@@ -591,7 +591,7 @@ function generateEmailHTML(user: any, stats: any, url: string): string {
     <body>
       <div class="container">
         <div class="header">
-          <h1>🎬 Your Plex Unwrapped ${stats.year}</h1>
+          <h1>🎬 Your Unwrapped for Plex ${stats.year}</h1>
           <p>Hey ${user.friendly_name || user.username}!</p>
         </div>
         <div class="content">
@@ -615,7 +615,7 @@ function generateEmailHTML(user: any, stats: any, url: string): string {
           <p style="color: #666; font-size: 14px;">This personalized link is unique to you and will expire in 90 days.</p>
         </div>
         <div class="footer">
-          <p>🤖 Generated with Plex Unwrapped</p>
+          <p>🤖 Generated with Unwrapped for Plex</p>
           <p>If you didn't request this, you can safely ignore this email.</p>
         </div>
       </div>
@@ -630,7 +630,7 @@ function generateEmailHTML(user: any, stats: any, url: string): string {
 function generateEmailText(user: any, stats: any, url: string): string {
   const hours = Math.floor(stats.total_watch_time_minutes / 60);
   return `
-Your Plex Unwrapped ${stats.year}
+Your Unwrapped for Plex ${stats.year}
 
 Hey ${user.friendly_name || user.username}!
 
@@ -647,7 +647,7 @@ ${url}
 This personalized link is unique to you and will expire in 90 days.
 
 ---
-Generated with Plex Unwrapped
+Generated with Unwrapped for Plex
 If you didn't request this, you can safely ignore this email.
   `.trim();
 }

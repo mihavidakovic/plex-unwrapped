@@ -1,4 +1,4 @@
-# Plex Unwrapped
+# Unwrapped for Plex
 
 Year-in-review statistics for Plex users. Generates personalized viewing stats from Tautulli history and distributes via email with unique access links.
 
@@ -88,10 +88,10 @@ docker compose up -d
 ```
 
 Containers:
-- `plex-unwrapped-frontend`: Port 3222 (default)
-- `plex-unwrapped-backend`: Port 3221 (default)
-- `plex-unwrapped-db`: PostgreSQL (internal)
-- `plex-unwrapped-redis`: Redis (internal)
+- `unwrapped-for-plex-frontend`: Port 3222 (default)
+- `unwrapped-for-plex-backend`: Port 3221 (default)
+- `unwrapped-for-plex-db`: PostgreSQL (internal)
+- `unwrapped-for-plex-redis`: Redis (internal)
 
 ### 4. Access Admin Panel
 
@@ -318,4 +318,4 @@ Critical variables:
 ## License
 
 MIT
-# plex-unwrapped
+# unwrapped-for-plex
