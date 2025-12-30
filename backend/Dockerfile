@@ -53,6 +53,9 @@ RUN npm ci --only=production && \
 # Copy built application from builder
 COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
 
+# Copy locale files (JSON translations)
+COPY --from=builder --chown=nodejs:nodejs /app/src/locales ./dist/locales
+
 # Copy healthcheck script
 COPY --chown=nodejs:nodejs healthcheck.js ./
 
