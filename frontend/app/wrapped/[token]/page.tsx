@@ -3,7 +3,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { motion, useInView } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { api } from '@/lib/api';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 interface WrappedData {
   user: {
@@ -130,9 +132,35 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
 export default function WrappedPage() {
   const params = useParams();
   const token = params.token as string;
+  const t = useTranslations('wrapped');
   const [data, setData] = useState<WrappedData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const formatHours = (minutes: number) => {
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    if (days > 0) {
+      const remainingHours = hours % 24;
+      return remainingHours > 0
+        ? t('time.duration.daysHours', { days, hours: remainingHours })
+        : t('time.duration.days', { days });
+    }
+    return t('time.duration.hours', { hours });
+  };
+
+  const formatTime = (hour: number) => {
+    if (hour === 0) return t('time.hour.am', { hour: 12 });
+    if (hour < 12) return t('time.hour.am', { hour });
+    if (hour === 12) return t('time.hour.pm', { hour: 12 });
+    return t('time.hour.pm', { hour: hour - 12 });
+  };
+
+  const getTautulliImageUrl = (thumb: string) => {
+    if (!thumb) return '';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
+    return `${apiUrl}/api/wrapped/plex-image?path=${encodeURIComponent(thumb)}`;
+  };
 
   useEffect(() => {
     loadWrappedStats();
@@ -214,29 +242,6 @@ export default function WrappedPage() {
     updateMetaTag('keywords', `plex, wrapped, ${year}, movies, tv shows, streaming, entertainment, ${displayName}`, false);
   }, [data, token]);
 
-  const formatHours = (minutes: number) => {
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    if (days > 0) {
-      const remainingHours = hours % 24;
-      return remainingHours > 0 ? `${days}d ${remainingHours}h` : `${days}d`;
-    }
-    return `${hours}h`;
-  };
-
-  const formatTime = (hour: number) => {
-    if (hour === 0) return '12 AM';
-    if (hour < 12) return `${hour} AM`;
-    if (hour === 12) return '12 PM';
-    return `${hour - 12} PM`;
-  };
-
-  const getTautulliImageUrl = (thumb: string) => {
-    if (!thumb) return '';
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
-    return `${apiUrl}/api/wrapped/plex-image?path=${encodeURIComponent(thumb)}`;
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a]">
@@ -262,7 +267,7 @@ export default function WrappedPage() {
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            Loading your year...
+            {t('loading')}
           </motion.p>
         </motion.div>
       </div>
@@ -280,15 +285,15 @@ export default function WrappedPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="text-8xl mb-6 font-['Bebas_Neue'] text-[#ff6b35]">404</div>
+          <div className="text-8xl mb-6 font-['Bebas_Neue'] text-[#ff6b35]">{t('error.notFound')}</div>
           <p className="text-[#e8e8e8] mb-8 font-['DM_Sans'] text-base">
-            {error || 'This link is invalid or has expired'}
+            {error || t('error.invalidLink')}
           </p>
           <button
             onClick={() => window.location.reload()}
             className="px-8 py-3 bg-[#ff6b35] text-[#0a0a0a] font-['Bebas_Neue'] text-xl tracking-wider hover:bg-[#ff8555] transition-all hover:scale-105"
           >
-            Try Again
+            {t('error.tryAgain')}
           </button>
         </motion.div>
       </div>
@@ -314,6 +319,8 @@ export default function WrappedPage() {
       `}</style>
 
       <div className="bg-[#0a0a0a] snap-y snap-mandatory h-screen overflow-y-scroll">
+        {/* Language Switcher */}
+        <LanguageSwitcher />
 
         {/* Slide 1: Welcome */}
         <section className="snap-start min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -336,10 +343,10 @@ export default function WrappedPage() {
                 {displayName.toUpperCase()}
               </div>
               <h1 className="font-['Bebas_Neue'] text-7xl md:text-9xl text-[#e8e8e8] tracking-wider">
-                Your {year}
+                {t('welcome.yourYear', { year })}
               </h1>
               <h2 className="font-['Bebas_Neue'] text-5xl md:text-7xl text-[#ff6b35] tracking-wider mt-2">
-                Wrapped
+                {t('welcome.wrapped')}
               </h2>
             </motion.div>
 
@@ -349,7 +356,7 @@ export default function WrappedPage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              Your year in entertainment. Scroll to reveal your story.
+              {t('welcome.subtitle')}
             </motion.p>
 
             <motion.div
@@ -382,7 +389,7 @@ export default function WrappedPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              You spent
+              {t('totalWatchTime.youSpent')}
             </motion.p>
 
             <motion.div
@@ -405,7 +412,7 @@ export default function WrappedPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.8 }}
             >
-              Hours Watching
+              {t('totalWatchTime.hoursWatching')}
             </motion.p>
 
             <motion.p
@@ -415,7 +422,7 @@ export default function WrappedPage() {
               viewport={{ once: true }}
               transition={{ delay: 1.2 }}
             >
-              That's {Math.floor(totalHours / 24)} days of pure entertainment
+              {t('totalWatchTime.daysOfEntertainment', { days: Math.floor(totalHours / 24) })}
             </motion.p>
           </motion.div>
         </section>
@@ -437,7 +444,7 @@ export default function WrappedPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Your Year in Numbers
+              {t('numbers.title')}
             </motion.h2>
 
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
@@ -452,9 +459,9 @@ export default function WrappedPage() {
                 <div className="text-6xl md:text-7xl font-['Bebas_Neue'] text-[#ff6b35] mb-2">
                   <AnimatedCounter value={stats.uniqueMovies} />
                 </div>
-                <div className="font-['Bebas_Neue'] text-2xl text-[#e8e8e8]">Movies</div>
+                <div className="font-['Bebas_Neue'] text-2xl text-[#e8e8e8]">{t('numbers.movies')}</div>
                 <div className="font-['DM_Sans'] text-base text-[#888] mt-2">
-                  {stats.totalMovies} total plays
+                  {t('numbers.totalPlays', { count: stats.totalMovies })}
                 </div>
               </motion.div>
 
@@ -469,9 +476,9 @@ export default function WrappedPage() {
                 <div className="text-6xl md:text-7xl font-['Bebas_Neue'] text-[#f7931e] mb-2">
                   <AnimatedCounter value={stats.uniqueShows} />
                 </div>
-                <div className="font-['Bebas_Neue'] text-2xl text-[#e8e8e8]">TV Shows</div>
+                <div className="font-['Bebas_Neue'] text-2xl text-[#e8e8e8]">{t('numbers.tvShows')}</div>
                 <div className="font-['DM_Sans'] text-base text-[#888] mt-2">
-                  {stats.totalTvEpisodes} episodes watched
+                  {t('numbers.episodesWatched', { count: stats.totalTvEpisodes })}
                 </div>
               </motion.div>
             </div>
@@ -487,7 +494,7 @@ export default function WrappedPage() {
                 <div className="font-['Bebas_Neue'] text-5xl text-[#e8e8e8]">
                   <AnimatedCounter value={stats.daysActive} />
                 </div>
-                <div className="font-['Bebas_Neue'] text-2xl text-[#888]">Days Active</div>
+                <div className="font-['Bebas_Neue'] text-2xl text-[#888]">{t('numbers.daysActive')}</div>
               </div>
             </motion.div>
           </motion.div>
@@ -509,7 +516,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                Your Top <span className="text-[#f7931e]">TV Shows</span>
+                {t('topShows.title')}
               </motion.h2>
 
               <div className="space-y-4">
@@ -531,7 +538,7 @@ export default function WrappedPage() {
                         <div className="flex-1 min-w-0">
                           <div className="font-['Bebas_Neue'] text-2xl text-[#e8e8e8] truncate">{show.title}</div>
                           <div className="font-['DM_Sans'] text-base text-[#888] mt-1">
-                            {show.episodes} episodes • {formatHours(show.durationMinutes)}
+                            {t('topShows.episodes', { count: show.episodes })} • {t('topShows.duration', { duration: formatHours(show.durationMinutes) })}
                           </div>
                         </div>
                       </div>
@@ -539,7 +546,7 @@ export default function WrappedPage() {
                         <div className="font-['Bebas_Neue'] text-3xl text-[#f7931e]">
                           {show.plays}
                         </div>
-                        <div className="font-['DM_Sans'] text-base text-[#888]">plays</div>
+                        <div className="font-['DM_Sans'] text-base text-[#888]">{t('topShows.plays')}</div>
                       </div>
                     </div>
                   </motion.div>
@@ -554,7 +561,7 @@ export default function WrappedPage() {
                   viewport={{ once: true }}
                   transition={{ delay: 1 }}
                 >
-                  You watched <span className="text-[#f7931e]">{stats.topShows[0].episodes} episodes</span> of {stats.topShows[0].title}!
+                  {t('topShows.watchedEpisodes', { count: stats.topShows[0].episodes, title: stats.topShows[0].title })}
                 </motion.p>
               )}
             </motion.div>
@@ -577,7 +584,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                Your Top <span className="text-[#ff6b35]">Movies</span>
+                {t('topMovies.title')}
               </motion.h2>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -607,7 +614,7 @@ export default function WrappedPage() {
                             {movie.title}
                           </div>
                           <div className="font-['DM_Sans'] text-sm text-[#ff6b35] mt-1">
-                            {movie.plays} plays
+                            {t('topMovies.playsCount', { count: movie.plays })}
                           </div>
                         </div>
                       </div>
@@ -644,7 +651,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                Your Year's Journey
+                {t('monthlyJourney.title')}
               </motion.h2>
 
               <motion.p
@@ -654,7 +661,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                {stats.mostActiveMonth} was your peak month
+                {t('monthlyJourney.peakMonth', { month: stats.mostActiveMonth })}
               </motion.p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -711,7 +718,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                Where You Watched
+                {t('devices.title')}
               </motion.h2>
 
               <div className="space-y-4">
@@ -738,12 +745,12 @@ export default function WrappedPage() {
                           <div>
                             <div className="font-['Bebas_Neue'] text-2xl text-[#e8e8e8]">{device.device}</div>
                             <div className="font-['DM_Sans'] text-base text-[#888]">
-                              {device.platform} • {formatHours(device.minutes)}
+                              {t('devices.platform', { platform: device.platform })} • {t('devices.hours', { hours: formatHours(device.minutes) })}
                             </div>
                           </div>
                           <div className="text-right">
                             <div className="font-['Bebas_Neue'] text-3xl text-[#ff6b35]">{percentage}%</div>
-                            <div className="font-['DM_Sans'] text-base text-[#888]">{device.plays} plays</div>
+                            <div className="font-['DM_Sans'] text-base text-[#888]">{device.plays} {t('devices.plays')}</div>
                           </div>
                         </div>
                       </div>
@@ -774,7 +781,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                Your most memorable day
+                {t('memorableDay.title')}
               </motion.p>
 
               <motion.div
@@ -812,7 +819,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 1 }}
               >
-                Your longest single-day marathon
+                {t('memorableDay.subtitle')}
               </motion.p>
             </motion.div>
           </section>
@@ -834,7 +841,7 @@ export default function WrappedPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                Full Circle
+                {t('fullCircle.title')}
               </motion.h2>
 
               <div className="space-y-8">
@@ -846,7 +853,7 @@ export default function WrappedPage() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className="font-['DM_Sans'] text-base text-[#888] mb-3">YOUR FIRST WATCH</div>
+                    <div className="font-['DM_Sans'] text-base text-[#888] mb-3">{t('fullCircle.firstWatch')}</div>
                     <div className="font-['Bebas_Neue'] text-4xl text-[#ff6b35] mb-2">{stats.firstWatchTitle}</div>
                     <div className="font-['DM_Sans'] text-base text-[#888]">
                       {new Date(stats.firstWatchDate).toLocaleDateString('en-US', {
@@ -866,7 +873,7 @@ export default function WrappedPage() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 }}
                   >
-                    <div className="font-['DM_Sans'] text-base text-[#888] mb-3">YOUR LATEST WATCH</div>
+                    <div className="font-['DM_Sans'] text-base text-[#888] mb-3">{t('fullCircle.lastWatch')}</div>
                     <div className="font-['Bebas_Neue'] text-4xl text-[#f7931e] mb-2">{stats.lastWatchTitle}</div>
                     <div className="font-['DM_Sans'] text-base text-[#888]">
                       {new Date(stats.lastWatchDate).toLocaleDateString('en-US', {
@@ -887,10 +894,10 @@ export default function WrappedPage() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.7 }}
                 >
-                  <div className="font-['DM_Sans'] text-base text-[#888] mb-2">COMFORT REWATCHES</div>
+                  <div className="font-['DM_Sans'] text-base text-[#888] mb-2">{t('fullCircle.comfortRewatches')}</div>
                   <div className="font-['Bebas_Neue'] text-5xl text-[#e8e8e8]">{stats.rewatches}</div>
                   <div className="font-['DM_Sans'] text-base text-[#888] mt-2">
-                    Sometimes the classics just hit different
+                    {t('fullCircle.classicsHitDifferent')}
                   </div>
                 </motion.div>
               )}
@@ -918,7 +925,7 @@ export default function WrappedPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Peak Performance
+              {t('peakPerformance.title')}
             </motion.h2>
 
             <div className="space-y-8">
@@ -931,13 +938,13 @@ export default function WrappedPage() {
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div>
-                    <div className="font-['DM_Sans'] text-base text-[#888] mb-2">LONGEST STREAK</div>
+                    <div className="font-['DM_Sans'] text-base text-[#888] mb-2">{t('peakPerformance.longestStreak')}</div>
                     <div className="font-['Bebas_Neue'] text-4xl text-[#ff6b35]">
-                      <AnimatedCounter value={stats.longestStreakDays} /> Days
+                      {t('peakPerformance.longestStreakDays', { days: stats.longestStreakDays })}
                     </div>
                   </div>
                   <div className="font-['DM_Sans'] text-sm text-[#e8e8e8]">
-                    You couldn't stop watching
+                    {t('peakPerformance.couldntStop')}
                   </div>
                 </div>
               </motion.div>
@@ -951,14 +958,14 @@ export default function WrappedPage() {
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div>
-                    <div className="font-['DM_Sans'] text-base text-[#888] mb-2">LONGEST BINGE</div>
+                    <div className="font-['DM_Sans'] text-base text-[#888] mb-2">{t('peakPerformance.longestBinge')}</div>
                     <div className="font-['Bebas_Neue'] text-4xl text-[#f7931e]">
                       {formatHours(stats.longestBingeMinutes)}
                     </div>
                   </div>
                   <div className="font-['DM_Sans'] text-sm text-[#e8e8e8] md:text-right">
                     {stats.longestBingeShow && (
-                      <>Binging <span className="text-[#f7931e]">{stats.longestBingeShow}</span></>
+                      <>{t('peakPerformance.bingingShow', { show: stats.longestBingeShow })}</>
                     )}
                   </div>
                 </div>
@@ -973,13 +980,13 @@ export default function WrappedPage() {
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div>
-                    <div className="font-['DM_Sans'] text-base text-[#888] mb-2">FAVORITE TIME</div>
+                    <div className="font-['DM_Sans'] text-base text-[#888] mb-2">{t('peakPerformance.favoriteTime')}</div>
                     <div className="font-['Bebas_Neue'] text-4xl text-[#ff6b35]">
                       {formatTime(stats.mostActiveHour)}
                     </div>
                   </div>
                   <div className="font-['DM_Sans'] text-sm text-[#e8e8e8]">
-                    Your peak watching hour
+                    {t('peakPerformance.peakWatchingHour')}
                   </div>
                 </div>
               </motion.div>
@@ -1002,7 +1009,7 @@ export default function WrappedPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Did You Know?
+              {t('funFacts.title')}
             </motion.h2>
 
             <div className="space-y-6">
@@ -1016,27 +1023,28 @@ export default function WrappedPage() {
 
                 // Generate additional facts from data
                 if (stats.mostActiveDayOfWeek) {
-                  generatedFacts.push(`${stats.mostActiveDayOfWeek}s are your go-to watch day`);
+                  generatedFacts.push(t('funFacts.dayOfWeek', { day: stats.mostActiveDayOfWeek }));
                 }
 
                 if (stats.topShows[0] && stats.topShows[0].episodes > 20) {
-                  generatedFacts.push(`You crushed ${stats.topShows[0].episodes} episodes of ${stats.topShows[0].title}`);
+                  generatedFacts.push(t('funFacts.crushedEpisodes', { count: stats.topShows[0].episodes, title: stats.topShows[0].title }));
                 }
 
                 if (stats.qualityStats && stats.qualityStats.directPlay > stats.qualityStats.transcode) {
-                  generatedFacts.push(`${Math.round((stats.qualityStats.directPlay / stats.totalPlays) * 100)}% of your streams were in original quality`);
+                  const percentage = Math.round((stats.qualityStats.directPlay / stats.totalPlays) * 100);
+                  generatedFacts.push(t('funFacts.originalQuality', { percentage }));
                 }
 
-                const moviesVsShows = stats.totalMovies > stats.totalTvEpisodes ? 'movies' : 'TV shows';
-                generatedFacts.push(`You're definitely more of a ${moviesVsShows} person`);
+                const moviesVsShows = stats.totalMovies > stats.totalTvEpisodes ? t('contentTypes.movies') : t('contentTypes.tvShows');
+                generatedFacts.push(t('funFacts.preference', { type: moviesVsShows }));
 
                 if (stats.daysActive < 200) {
                   const percentage = Math.round((stats.daysActive / 365) * 100);
-                  generatedFacts.push(`You watched on ${percentage}% of days this year`);
+                  generatedFacts.push(t('funFacts.watchedPercentage', { percentage }));
                 }
 
                 if (stats.topDevices[0]) {
-                  generatedFacts.push(`${stats.topDevices[0].device} was your favorite way to watch`);
+                  generatedFacts.push(t('funFacts.favoriteDevice', { device: stats.topDevices[0].device }));
                 }
 
                 return generatedFacts.slice(0, 6).map((fact, index) => (
@@ -1091,10 +1099,10 @@ export default function WrappedPage() {
               transition={{ delay: 0.3 }}
             >
               <h2 className="font-['Bebas_Neue'] text-6xl md:text-8xl text-[#e8e8e8] mb-6">
-                Thanks for Watching
+                {t('thankYou.title')}
               </h2>
               <p className="font-['DM_Sans'] text-[#888] text-sm mb-12">
-                Here's to another great year of entertainment
+                {t('thankYou.subtitle')}
               </p>
             </motion.div>
 
@@ -1112,18 +1120,18 @@ export default function WrappedPage() {
                   rel="noopener noreferrer"
                   className="px-8 py-3 bg-[#ff6b35] text-[#0a0a0a] font-['Bebas_Neue'] text-xl tracking-wider hover:bg-[#ff8555] transition-all hover:scale-105 rounded-lg text-center leading-[2rem]"
                 >
-                  Watch More on Plex
+                  {t('thankYou.watchMore')}
                 </a>
                 <button
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   className="px-8 py-3 bg-[#1a1a1a] text-[#e8e8e8] border-2 border-[#333] font-['Bebas_Neue'] text-xl tracking-wider hover:border-[#ff6b35] transition-all hover:scale-105 rounded-lg"
                 >
-                  Scroll to Top
+                  {t('thankYou.scrollToTop')}
                 </button>
               </div>
 
               <div className="font-['DM_Sans'] text-sm text-[#555] mt-4">
-                {year} Wrapped • Generated {new Date(data.generatedAt).toLocaleDateString()}
+                {t('thankYou.generated', { year, date: new Date(data.generatedAt).toLocaleDateString() })}
               </div>
             </motion.div>
           </motion.div>

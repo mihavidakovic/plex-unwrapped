@@ -1,20 +1,18 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
 import { locales, defaultLocale } from '@/lib/i18n';
 
 type Props = {
   children: React.ReactNode;
-  params: { token: string };
-  searchParams: { lang?: string };
+  params?: { token: string };
+  searchParams?: { lang?: string };
 };
 
 export default async function WrappedLayout({
   children,
-  params,
   searchParams,
 }: Props) {
   // Get locale from query param or default to 'en'
-  const locale = searchParams.lang || defaultLocale;
+  const locale = searchParams?.lang || defaultLocale;
 
   // Validate locale
   if (!locales.includes(locale as any)) {
