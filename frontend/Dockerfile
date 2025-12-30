@@ -70,6 +70,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
+# Copy translation files (required for next-intl)
+COPY --from=builder --chown=nextjs:nodejs /app/messages ./messages
+
 # Switch to non-root user
 USER nextjs
 

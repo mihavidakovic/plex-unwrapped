@@ -12,6 +12,7 @@ export interface User {
   is_home_user: boolean;
   is_allow_sync: boolean;
   is_restricted: boolean;
+  preferred_language: string;
   created_at: Date;
   updated_at: Date;
   last_seen: Date | null;
@@ -27,6 +28,7 @@ export interface UserCreate {
   is_home_user?: boolean;
   is_allow_sync?: boolean;
   is_restricted?: boolean;
+  preferred_language?: string;
 }
 
 export interface UserUpdate {
@@ -38,6 +40,7 @@ export interface UserUpdate {
   is_home_user?: boolean;
   is_allow_sync?: boolean;
   is_restricted?: boolean;
+  preferred_language?: string;
   last_seen?: Date;
 }
 

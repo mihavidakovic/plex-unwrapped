@@ -1,0 +1,105 @@
+{
+  "wrapped": {
+    "loading": "Nalagam tvoje leto...",
+    "error": {
+      "notFound": "404",
+      "invalidLink": "Ta povezava ni veljavna ali je potekla",
+      "tryAgain": "Poskusi Ponovno"
+    },
+    "welcome": {
+      "yourYear": "Tvoje {year}",
+      "wrapped": "v Povzetku",
+      "subtitle": "Tvoje leto v zabavi. Drsaj navzdol in odkri svojo zgodbo."
+    },
+    "totalWatchTime": {
+      "youSpent": "Porabil si",
+      "hoursWatching": "Ur Gledanja",
+      "daysOfEntertainment": "To je kar {days} dni zabave!"
+    },
+    "numbers": {
+      "title": "Tvoje Leto v Številkah",
+      "movies": "Filmi",
+      "totalPlays": "{count} predvajanj",
+      "tvShows": "Serije",
+      "episodesWatched": "{count} epizod gledanih",
+      "daysActive": "Aktivnih Dni"
+    },
+    "topShows": {
+      "title": "Tvoje Najljubše Serije",
+      "episodes": "{count} epizod",
+      "duration": "{duration}",
+      "plays": "krat",
+      "watchedEpisodes": "Pogledal si {count} epizod serije {title}!"
+    },
+    "topMovies": {
+      "title": "Tvoji Najljubši Filmi",
+      "playsCount": "{count} krat"
+    },
+    "monthlyJourney": {
+      "title": "Tvoje Letno Potovanje",
+      "peakMonth": "{month} je bil tvoj top mesec"
+    },
+    "devices": {
+      "title": "Kje Si Gledal",
+      "platform": "{platform}",
+      "hours": "{hours}",
+      "plays": "krat"
+    },
+    "memorableDay": {
+      "title": "Tvoj najbolj epski dan",
+      "subtitle": "Tvoj najdaljši maraton"
+    },
+    "fullCircle": {
+      "title": "Celoten Krog",
+      "firstWatch": "TVA PRVA IZBIRA",
+      "lastWatch": "TVA ZADNJA IZBIRA",
+      "comfortRewatches": "TVOJI KLASIKI",
+      "classicsHitDifferent": "Klasiki so vedno pravi"
+    },
+    "peakPerformance": {
+      "title": "Na Vrhuncu",
+      "longestStreak": "NAJDALJŠI NIZ",
+      "longestStreakDays": "{days} Dni",
+      "couldntStop": "Nisi mogel prenehati",
+      "longestBinge": "NAJDALJŠI MARATON",
+      "bingingShow": "Maraton {show}",
+      "favoriteTime": "NAJLJUBŠI ČAS",
+      "peakWatchingHour": "Tvoja najboljša ura"
+    },
+    "funFacts": {
+      "title": "Ali Si Vedel?",
+      "dayOfWeek": "{day} so tvoji najljubši dan",
+      "crushedEpisodes": "Požrl si {count} epizod serije {title}",
+      "originalQuality": "{percentage}% v originalni kakovosti",
+      "preference": "Zagotovo si bolj tip za {type}",
+      "watchedPercentage": "Gledal si {percentage}% dni v letu",
+      "favoriteDevice": "{device} je bil tvoj top zaslon"
+    },
+    "thankYou": {
+      "title": "Hvala za Vse",
+      "subtitle": "Za še eno super leto zabave",
+      "watchMore": "Poglej Več na Plex",
+      "scrollToTop": "Na Vrh",
+      "generated": "Povzetek {year} • Ustvarjeno {date}"
+    },
+    "time": {
+      "hour": {
+        "am": "{hour}",
+        "pm": "{hour}"
+      },
+      "duration": {
+        "days": "{days}d",
+        "daysHours": "{days}d {hours}h",
+        "hours": "{hours}h"
+      }
+    },
+    "contentTypes": {
+      "movies": "filmi",
+      "tvShows": "serije"
+    }
+  },
+  "language": {
+    "select": "Izberi Jezik",
+    "current": "Trenutni Jezik"
+  }
+}

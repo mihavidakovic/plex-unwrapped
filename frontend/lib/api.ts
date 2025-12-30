@@ -136,6 +136,13 @@ class ApiClient {
     });
   }
 
+  async updateUserLanguage(userId: number, language: string) {
+    return this.request(`/api/admin/users/${userId}/language`, {
+      method: 'PATCH',
+      body: JSON.stringify({ preferred_language: language }),
+    });
+  }
+
   // Health API
   async getHealth() {
     return this.request('/api/health');

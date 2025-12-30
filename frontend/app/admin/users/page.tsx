@@ -21,6 +21,7 @@ interface User {
   username: string;
   email: string;
   friendly_name?: string;
+  preferred_language?: string;
   hasStats?: boolean;
   statsYear?: number;
   wrappedUrl?: string;
@@ -114,6 +115,20 @@ export default function AdminUsersPage() {
     }
   };
 
+  const handleLanguageChange = async (userId: number, language: string) => {
+    setError('');
+    setSuccessMessage('');
+    try {
+      await api.updateUserLanguage(userId, language);
+      setSuccessMessage(`Language preference updated to ${language}`);
+      // Update local state
+      setUsers(prevUsers => prevUsers.map(u => u.id === userId ? { ...u, preferred_language: language } : u));
+      setFilteredUsers(prevUsers => prevUsers.map(u => u.id === userId ? { ...u, preferred_language: language } : u));
+    } catch (err: any) {
+      setError(err.message || 'Failed to update language preference');
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -189,6 +204,7 @@ export default function AdminUsersPage() {
                   <TableHead>Username</TableHead>
                   <TableHead>Email</TableHead>
                   <TableHead>Friendly Name</TableHead>
+                  <TableHead>Language</TableHead>
                   <TableHead>Stats Status</TableHead>
                   <TableHead>Last Synced</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
@@ -201,6 +217,19 @@ export default function AdminUsersPage() {
                     <TableCell>{user.email || <span className="text-gray-500">-</span>}</TableCell>
                     <TableCell>
                       {user.friendly_name || <span className="text-gray-500">-</span>}
+                    </TableCell>
+                    <TableCell>
+                      <select
+                        value={user.preferred_language || 'en'}
+                        onChange={(e) => handleLanguageChange(user.id, e.target.value)}
+                        className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm focus:outline-none focus:border-plex-500"
+                      >
+                        <option value="en">🇬🇧 English</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="sl">🇸🇮 Slovenščina</option>
+                      </select>
                     </TableCell>
                     <TableCell>
                       {user.hasStats ? (

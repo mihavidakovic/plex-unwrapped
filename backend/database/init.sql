@@ -24,6 +24,8 @@ CREATE TABLE users (
     is_home_user BOOLEAN DEFAULT true,
     is_allow_sync BOOLEAN DEFAULT false,
     is_restricted BOOLEAN DEFAULT false,
+    preferred_language VARCHAR(10) DEFAULT 'en',
+    -- Language preference for wrapped page and emails (en, es, fr, de, sl)
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     last_seen TIMESTAMP WITH TIME ZONE
@@ -32,6 +34,7 @@ CREATE TABLE users (
 CREATE INDEX idx_users_plex_id ON users(plex_user_id);
 CREATE INDEX idx_users_email ON users(email) WHERE email IS NOT NULL;
 CREATE INDEX idx_users_username ON users(username);
+CREATE INDEX idx_users_preferred_language ON users(preferred_language);
 
 -- =============================================================================
 -- Wrapped Generations Table

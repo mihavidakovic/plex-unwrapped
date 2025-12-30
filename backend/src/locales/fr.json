@@ -1,0 +1,31 @@
+{
+  "email": {
+    "subject": "Ton Unwrapped for Plex {year} est prêt ! 🎬",
+    "title": "🎬 Ton Unwrapped for Plex {year}",
+    "greeting": "Salut {name} !",
+    "intro": "Ton récapitulatif de l'année est prêt !",
+    "quickPeek": {
+      "title": "Aperçu Rapide 👀",
+      "hoursWatched": "{hours} heures de contenu regardé",
+      "totalPlays": "{plays} lectures au total",
+      "daysActive": "{days} jours actifs"
+    },
+    "description": "Clique ci-dessous pour découvrir tes stats complètes, ton contenu préféré, tes habitudes de visionnage et tes exploits !",
+    "button": "Voir Mon Récap {year}",
+    "linkExpiry": "Ce lien est unique et personnel. Il expire dans 90 jours.",
+    "footer": {
+      "generated": "🤖 Généré avec Unwrapped for Plex",
+      "ignore": "Si tu n'as pas demandé cela, tu peux ignorer cet e-mail."
+    },
+    "plainText": {
+      "title": "Ton Unwrapped for Plex {year}",
+      "quickPeek": "Aperçu Rapide :",
+      "hoursWatched": "- {hours} heures de contenu regardé",
+      "totalPlays": "- {plays} lectures au total",
+      "daysActive": "- {days} jours actifs",
+      "viewHere": "Consulte tes stats complètes ici :",
+      "separator": "---",
+      "generated": "Généré avec Unwrapped for Plex"
+    }
+  }
+}
