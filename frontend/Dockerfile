@@ -29,6 +29,9 @@ COPY --from=deps /app/node_modules ./node_modules
 # Copy all files
 COPY . .
 
+# Ensure public folder exists for COPY later
+RUN mkdir -p public
+
 # Build arguments
 ARG NEXT_PUBLIC_APP_URL
 ARG NEXT_PUBLIC_API_URL
@@ -69,9 +72,8 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy public folder (create if doesn't exist or is empty)
-RUN mkdir -p ./public
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public 2>/dev/null || true
+# Copy public folder if it exists
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 # Copy translation files (required for next-intl)
 COPY --from=builder --chown=nextjs:nodejs /app/messages ./messages
