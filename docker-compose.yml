@@ -102,7 +102,7 @@ services:
       EMAIL_RATE_LIMIT: ${EMAIL_RATE_LIMIT:-10}
 
       # Application
-      APP_URL: ${APP_URL:-http://localhost:3000}
+      APP_URL: ${APP_URL:-http://localhost:3222}
       TARGET_YEAR: ${TARGET_YEAR:-2025}
 
       # Admin
@@ -116,7 +116,7 @@ services:
       TOKEN_EXPIRATION_DAYS: ${TOKEN_EXPIRATION_DAYS:-90}
       RATE_LIMIT_PUBLIC: ${RATE_LIMIT_PUBLIC:-100}
       RATE_LIMIT_ADMIN: ${RATE_LIMIT_ADMIN:-1000}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3222}
 
       # Features
       ENABLE_SHARE_IMAGES: ${ENABLE_SHARE_IMAGES:-true}
@@ -167,8 +167,9 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_APP_URL: ${APP_URL:-http://localhost:3000}
+        NEXT_PUBLIC_APP_URL: ${APP_URL:-http://localhost:3222}
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3221}
+        NEXT_PUBLIC_PLEX_URL: ${NEXT_PUBLIC_PLEX_URL:-}
         NODE_ENV: ${NODE_ENV:-production}
     container_name: unwrapped-for-plex-frontend
     ports:
@@ -176,8 +177,9 @@ services:
     environment:
       NODE_ENV: ${NODE_ENV:-production}
       BACKEND_API_URL: http://backend:3001
-      NEXT_PUBLIC_APP_URL: ${APP_URL:-http://localhost:3000}
+      NEXT_PUBLIC_APP_URL: ${APP_URL:-http://localhost:3222}
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3221}
+      NEXT_PUBLIC_PLEX_URL: ${NEXT_PUBLIC_PLEX_URL:-}
       NEXT_PUBLIC_ENABLE_SHARE_IMAGES: ${ENABLE_SHARE_IMAGES:-true}
     depends_on:
       backend:

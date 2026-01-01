@@ -68,7 +68,10 @@ COPY --from=builder /app/package.json ./package.json
 # Copy standalone output
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+
+# Copy public folder (create if doesn't exist or is empty)
+RUN mkdir -p ./public
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public 2>/dev/null || true
 
 # Copy translation files (required for next-intl)
 COPY --from=builder --chown=nextjs:nodejs /app/messages ./messages

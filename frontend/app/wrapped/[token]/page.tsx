@@ -311,6 +311,7 @@ export default function WrappedPage() {
   const { user, year, stats } = data;
   const displayName = user.friendly_name || user.username;
   const totalHours = Math.floor(stats.totalWatchTimeMinutes / 60);
+  const plexUrl = process.env.NEXT_PUBLIC_PLEX_URL;
 
   return (
     <>
@@ -1128,16 +1129,25 @@ export default function WrappedPage() {
               transition={{ delay: 0.6 }}
             >
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://plex.myhserver.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 bg-[#ff6b35] text-[#0a0a0a] font-['Bebas_Neue'] text-xl tracking-wider hover:bg-[#ff8555] transition-all hover:scale-105 rounded-lg text-center leading-[2rem]"
-                >
-                  {t('thankYou.watchMore')}
-                </a>
+                {plexUrl && (
+                  <a
+                    href={plexUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-3 bg-[#ff6b35] text-[#0a0a0a] font-['Bebas_Neue'] text-xl tracking-wider hover:bg-[#ff8555] transition-all hover:scale-105 rounded-lg text-center leading-[2rem]"
+                  >
+                    {t('thankYou.watchMore')}
+                  </a>
+                )}
                 <button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  onClick={() => {
+                    const container = document.querySelector('.snap-y');
+                    if (container) {
+                      container.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
                   className="px-8 py-3 bg-[#1a1a1a] text-[#e8e8e8] border-2 border-[#333] font-['Bebas_Neue'] text-xl tracking-wider hover:border-[#ff6b35] transition-all hover:scale-105 rounded-lg"
                 >
                   {t('thankYou.scrollToTop')}

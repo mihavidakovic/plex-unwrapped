@@ -80,6 +80,7 @@ Edit `.env` and set required values:
 - `APP_URL`: Public URL where users access wrapped stats
 - `TARGET_YEAR`: Year to generate stats for (default: 2025)
 - `TEST_MODE=true`: For first run (generates stats without sending emails)
+- `NEXT_PUBLIC_PLEX_URL`: Your public Plex server URL (shows "Watch More on Plex" button if set)
 
 ### 3. Start Services
 
@@ -261,6 +262,26 @@ docker compose up -d
 - Increase `MAX_WORKERS` for faster generation
 - Reduce `TAUTULLI_PAGE_SIZE` if timeouts occur
 - Check Redis cache hit rate in logs
+
+### Portainer deployment issues
+If you encounter "path not found" errors when deploying via Portainer:
+1. Ensure you're uploading the entire repository, not just docker-compose.yml
+2. The docker-compose.yml file must be in the root directory with `backend/` and `frontend/` subdirectories
+3. Portainer's "Web editor" mode may not work - use "Git" or "Upload" deployment methods
+4. Build context paths are relative to docker-compose.yml location
+
+### Windows compatibility
+For development on Windows:
+1. **Line endings**: Use Git's autocrlf feature or ensure `.gitattributes` is present
+2. **npm install**: Run `npm install` in both `frontend/` and `backend/` directories before Docker build if building locally
+3. **Docker Desktop**: Ensure Docker Desktop is running and WSL2 backend is enabled
+4. **Paths**: Use forward slashes in .env file paths (e.g., `C:/path/to/logs`)
+
+### CORS errors on login
+If you see CORS errors when trying to log in:
+1. Ensure `APP_URL` in .env matches your frontend URL (default: http://localhost:3222)
+2. Update `CORS_ORIGINS` in .env to match your frontend URL
+3. Restart backend: `docker compose restart backend`
 
 ## Development
 
