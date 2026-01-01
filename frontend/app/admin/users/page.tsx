@@ -87,7 +87,10 @@ export default function AdminUsersPage() {
   };
 
   const handlePreview = async (userId: number) => {
-    const year = new Date().getFullYear();
+    // Find the user to get their stats year
+    const user = users.find(u => u.id === userId);
+    const year = user?.statsYear || new Date().getFullYear();
+
     try {
       const preview: any = await api.previewUser(userId, year);
       if (preview.previewUrl) {

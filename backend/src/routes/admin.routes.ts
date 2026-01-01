@@ -164,6 +164,7 @@ router.get('/users', asyncHandler(async (req, res) => {
         ...user,
         hasStats: !!stats,
         statsId: stats?.id || null,
+        statsYear: stats?.year || null,
         token: tokens?.token || null,
         generatedAt: stats?.generated_at || null,
       };
